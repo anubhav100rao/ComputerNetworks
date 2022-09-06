@@ -7,38 +7,38 @@
 
 int main()
 {
-    int client_socket;
+    int client1_socket;
     int error_check;
-    struct sockaddr_in client_address;
+    struct sockaddr_in client1_address;
     socklen_t server_len;
-    char client_message[2];
+    char client1_message[2];
 
-    server_len = sizeof(client_address);
+    server_len = sizeof(client1_address);
 
-    client_socket = socket(AF_INET, SOCK_DGRAM, 0);
-    if(client_socket == -1)
+    client1_socket = socket(AF_INET, SOCK_DGRAM, 0);
+    if(client1_socket == -1)
     {
         printf("Error creating socket\n");
         exit(1);
     }
 
-    client_address.sin_family = AF_INET;
-    client_address.sin_port = htons(9002);
-    client_address.sin_addr.s_addr = INADDR_ANY;
+    client1_address.sin_family = AF_INET;
+    client1_address.sin_port = htons(9002);
+    client1_address.sin_addr.s_addr = INADDR_ANY;
     
     printf("Enter character to send\n");
-    fgets(client_message, sizeof(client_message), stdin);
+    fgets(client1_message, sizeof(client1_message), stdin);
     
-    error_check = sendto(client_socket, client_message, sizeof(client_message),0, (struct sockaddr *) &client_address, server_len);
+    error_check = sendto(client1_socket, client1_message, sizeof(client1_message),0, (struct sockaddr *) &client1_address, server_len);
     if(error_check == -1)
     {
         printf("Error sending message\n");
         exit(1);
     }
 
-    printf("message sent by client\n");
+    printf("message sent by client1\n");
 
-    close(client_socket);
+    close(client1_socket);
 
     return 0;
 }

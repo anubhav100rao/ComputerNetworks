@@ -29,7 +29,7 @@ int main()
         printf("Error while binding\n");
         exit(1);
     }
-
+    
     // get message from client 1
     error_check = recvfrom(server_socket,server_message,sizeof(server_message),0, (struct sockaddr *) &client_address, &client_len);
     if(error_check == -1)
